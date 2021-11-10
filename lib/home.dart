@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'categ.dart';
 import 'categorypage.dart';
 import 'data.dart';
@@ -113,6 +114,13 @@ class _HomeState extends State<Home> {
           child: Column(
             children: [
 
+              Text('categories',
+
+
+
+
+              ),
+
               Container(
                   height: 70,
 
@@ -134,6 +142,19 @@ class _HomeState extends State<Home> {
 
                   )
               ),
+
+              Container(
+
+                                    
+                child: Text(
+                        'Latest',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+
               Container(
                 child: ListView.builder(
                   itemCount:  articles.length,
@@ -204,11 +225,11 @@ class CategoryTile extends StatelessWidget {
             // ClipRect(
 
             ClipRRect(
-              borderRadius: BorderRadius.circular(18.0),
+              borderRadius: BorderRadius.circular(20.0),
               child: CachedNetworkImage(
                 imageUrl: imageurl,
-                height: 100.0,
-                width: 90.0,
+                height: 130.0,
+                width: 115.0,
               ),
             ),
             Container(
@@ -226,7 +247,7 @@ class CategoryTile extends StatelessWidget {
                 name,
                 style: TextStyle(
                 color:Colors.white,
-                  fontSize: 15,
+                fontSize: 15,
                 ),
 
 

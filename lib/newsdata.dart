@@ -1,5 +1,4 @@
 import 'dart:convert';
-// import 'services.dart';
 import 'newsmodel.dart';
 import 'package:http/http.dart'as http;
 
@@ -58,10 +57,10 @@ class CategoryNews {
   List<ArticleModel> datatobesavedin = [];
 
 
-  Future<void> getNews(String category) async {
+  Future<void> getNews(String query) async {
 
-    var response = await http.get(Uri.parse("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=b08c863ab5be46e288ccf4f562e6b40d"));
-
+    var response = await http.get(Uri.parse("https://newsapi.org/v2/everything?q=$query&apiKey=b08c863ab5be46e288ccf4f562e6b40d"));
+    print(query);
     var jsonData = jsonDecode(response.body);
 
 
