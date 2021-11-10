@@ -51,9 +51,14 @@ class _HomeState extends State<Home> {
   }
 
 
-
+  TextEditingController _emailTEC = TextEditingController();
 
   Widget build(BuildContext context) {
+
+    var query = MediaQuery.of(context);
+    var height = query.size.height;
+    var width =  query.size.width;
+
     return Scaffold(
 
       appBar: AppBar(
@@ -114,16 +119,101 @@ class _HomeState extends State<Home> {
           child: Column(
             children: [
 
-              Text('categories',
+              Container(
+
+                width: MediaQuery.of(context).size.width/1.07,
+                height: MediaQuery.of(context).size.height/15,
+                margin: EdgeInsets.only(left: 5),
+                child: TextField(
+                  keyboardType: TextInputType.text,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontFamily: 'OpenSans',
+
+                  ),
+                  controller: _emailTEC,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.search),
+                      color: Colors.blue,
+                      iconSize: 30,
+                      onPressed: ()
+                      {
+                        var _email = _emailTEC.text;
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => CategoryFragment(
+                            category: _email.toLowerCase(),
+                          ),
+                        )
+                        );
+                      },
+                    ),
+
+                    // focusedBorder: OutlineInputBorder(
+                    //
+                    //   borderSide: BorderSide(
+                    //     color: Colors.blue,
+                    //     width: 3,
+                    //
+                    //   ),
+                    //   borderRadius: BorderRadius.circular(20),
+                    //
+                    // ),
+
+                    hintText: '\t\t  Search Any News',
+                    hintStyle: TextStyle(
+                      color: Colors.blueGrey, // <-- Change this
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                    ),
+                  ),
+                  // onChanged: (value) {
+                  //   setState(() {
+                  //     _email = value.trim();
+                  //   });
+                  // },
+                ),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.blue,
+                    width: 1.9 ,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  // color: const Color(0xff7cb1b6),
+                ),
+              ),
+
+
+              SizedBox(
+                height: height / 35,
+              ),
 
 
 
+              Container(
+              width: width / 1.10,
+              child : Text(
+                'Categories',
+                style: TextStyle(
 
+                  color: Colors.black,
+                  fontFamily: 'OpenSans',
+                  fontSize: 27.0,
+                  fontWeight: FontWeight.w500,
+
+                ),
+
+              ),
               ),
 
               Container(
-                  height: 70,
-
+                  // height: 100,
+                height: height / 8,
+                padding: EdgeInsets.only(left: 15),
                   child : ListView.builder(
 
                       itemCount: categories.length,
@@ -144,16 +234,20 @@ class _HomeState extends State<Home> {
               ),
 
               Container(
+                width: width / 1.10,
+                child : Text(
+                  'Latest',
+                  style: TextStyle(
 
-                                    
-                child: Text(
-                        'Latest',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
+                    color: Colors.black,
+                    fontFamily: 'OpenSans',
+                    fontSize: 27.0,
+                    fontWeight: FontWeight.w500,
+
+                  ),
+
+                ),
+              ),
 
               Container(
                 child: ListView.builder(
@@ -170,14 +264,9 @@ class _HomeState extends State<Home> {
 
                     );
 
-
                   } ,
                 ),
               ),
-
-
-
-
 
             ],),
 
@@ -210,9 +299,10 @@ class CategoryTile extends StatelessWidget {
             builder: (context) => CategoryFragment(
               category: name.toLowerCase(),
             ),
-          ));
-
+          )
+          );
         },
+
         child:Container(
 
         margin: EdgeInsets.only(right: 18),

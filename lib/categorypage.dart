@@ -91,8 +91,6 @@ class _CategoryFragmentState extends State<CategoryFragment> {
         ),
 
 
-
-
       ),
 
     );
@@ -118,7 +116,6 @@ class NewsTemplate extends StatelessWidget {
           ClipRRect(
               borderRadius: BorderRadius.circular(6),
               child: CachedNetworkImage(imageUrl: urlToImage, width: 380, height: 200, fit: BoxFit.cover,)),
-
           SizedBox(height: 8),
 
           Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.black),),
